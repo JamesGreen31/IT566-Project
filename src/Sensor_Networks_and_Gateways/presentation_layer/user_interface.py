@@ -1,7 +1,7 @@
 """Implements the applicatin user interface."""
 
-from application_name.application_base import ApplicationBase
-from application_name.service_layer.app_services import AppServices
+from Sensor_Networks_and_Gateways.application_base import ApplicationBase
+from Sensor_Networks_and_Gateways.service_layer.app_services import AppServices
 import inspect
 import json
 
