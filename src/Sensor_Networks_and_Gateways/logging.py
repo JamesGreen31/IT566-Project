@@ -2,7 +2,7 @@
 
 import logging
 import logging.handlers
-from application_name.settings import Settings
+from Sensor_Networks_and_Gateways.settings import Settings
 import os
 
 class LoggingService():
