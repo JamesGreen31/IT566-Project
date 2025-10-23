@@ -23,6 +23,7 @@ class MySQLPersistenceWrapper(ApplicationBase):
 		self.DB_CONFIG['database'] = \
 			self.DATABASE["connection"]["config"]["database"]
 		self.DB_CONFIG['user'] = self.DATABASE["connection"]["config"]["user"]
+		self.DB_CONFIG['password'] = self.DATABASE["connection"]["config"]["password"]
 		self.DB_CONFIG['host'] = self.DATABASE["connection"]["config"]["host"]
 		self.DB_CONFIG['port'] = self.DATABASE["connection"]["config"]["port"]
 
@@ -41,7 +42,42 @@ class MySQLPersistenceWrapper(ApplicationBase):
 
 	# MySQLPersistenceWrapper Methods
 
+	def execute_query(self, query:str, params:tuple=None)->list:
+		"""Executes a query and returns all results as a list of dictionaries."""
+		try:
+			self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Running query: {query}')
+			connection = self._connection_pool.get_connection()
+			db_cursor = connection.cursor(dictionary=True)
+			db_cursor.execute(query, params or ())
+			results = db_cursor.fetchall()
+			db_cursor.close()
+			connection.close()
+			return results
+		except connector.Error as err:
+			self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: MySQL error: {err}')
+			return []
+		except Exception as e:
+			self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: General error: {e}')
+			return []
 
+	def execute_operation(self, query:str, params:tuple=None)->int:
+		"""Executes Database operations."""
+		try:
+			self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing operation: {query}')
+			connection = self._connection_pool.get_connection()
+			db_cursor = connection.cursor()
+			db_cursor.execute(query, params or ())
+			affected_rows = db_cursor.rowcount
+			connection.commit()
+			db_cursor.close()
+			connection.close()
+			return affected_rows
+		except connector.Error as err:
+			self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: MySQL error: {err}')
+			return []
+		except Exception as e:
+			self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: General error: {e}')
+			return []
 
 
 
