@@ -8,7 +8,8 @@
         "pool": {
             "name": "app_name_db_pool",
             "size": 10,
-            "reset_session": true
+            "reset_session": true,
+            "use_pure": true
         },
         "connection": {
             "config": {

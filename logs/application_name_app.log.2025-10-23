@@ -1,0 +1,148 @@
+DEBUG:UserInterface:2025-10-23 18:55:49,679:__init__:It works!
+DEBUG:UserInterface:2025-10-23 18:55:49,689:start: User interface started!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 18:56:23,187:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 18:56:23,187:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 18:56:23,188:Creating connection pool...
+ERROR:MySQLPersistenceWrapper:2025-10-23 18:56:23,265:_initialize_database_connection_pool: Problem creating connection pool: 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+ERROR:MySQLPersistenceWrapper:2025-10-23 18:56:23,266:_initialize_database_connection_pool: Check DB cnfg:
+{"pool": {"name": "app_name_db_pool", "size": 10, "reset_session": true}, "connection": {"config": {"database": "sensors_and_gateways", "user": "root", "password": "toor", "host": "127.0.0.1", "port": 3306}}}
+DEBUG:AppServices:2025-10-23 18:56:23,266:__init__:It works!
+DEBUG:UserInterface:2025-10-23 18:56:23,267:__init__:It works!
+DEBUG:UserInterface:2025-10-23 18:56:23,267:start: User interface started!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:05:21,887:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:05:21,887:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:05:21,887:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:05:22,059:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:05:22,060:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:05:22,060:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:05:22,060:start: User interface started!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:14:31,448:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:14:31,449:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:14:31,449:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:14:31,571:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:14:31,572:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:14:31,572:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:14:31,572:start: User interface started!
+INFO:UserInterface:2025-10-23 19:14:31,573:self.DB): <Sensor_Networks_and_Gateways.service_layer.app_services.AppServices object at 0x0000025CEEF9AC00>
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:17:22,707:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:17:22,707:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:17:22,707:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:17:22,862:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:17:22,863:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:17:22,863:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:17:22,863:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:17:22,863:query_database: Executing query: SELECT * FROM gateways; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:18:30,357:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:18:30,357:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:18:30,357:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:18:30,478:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:18:30,478:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:18:30,479:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:18:30,479:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:18:30,479:query_database: Executing query: SELECT * FROM gateways; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:20:39,298:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:20:39,299:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:20:39,299:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:20:39,418:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:20:39,418:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:20:39,419:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:20:39,419:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:20:39,419:query_database: Executing query: SELECT * FROM gateways; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:20:39,420:execute_query: Running query: SELECT * FROM gateways;
+DEBUG:AppServices:2025-10-23 19:20:39,423:query_database: Query returned 3 results.
+DEBUG:UserInterface:2025-10-23 19:20:39,423:start: Row: {'idGateway': 1, 'GatewayName': 'Gateway 1'}
+DEBUG:UserInterface:2025-10-23 19:20:39,424:start: Row: {'idGateway': 2, 'GatewayName': 'Gateway 2'}
+DEBUG:UserInterface:2025-10-23 19:20:39,424:start: Row: {'idGateway': 3, 'GatewayName': 'Gateway 3'}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:26:13,171:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:26:13,171:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:26:13,171:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:26:13,293:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:26:13,293:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:26:13,294:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:26:13,294:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:26:13,294:query_database: Executing query: SELECT * FROM summaryview; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:26:13,294:execute_query: Running query: SELECT * FROM summaryview;
+DEBUG:AppServices:2025-10-23 19:26:13,297:query_database: Query returned 3 results.
+DEBUG:UserInterface:2025-10-23 19:26:13,298:start: Row: {'Gateway Name': 'Gateway 1', 'Linked Sensors': 'Sensor 1.1, Sensor 1.2, Sensor 1.3, Sensor X.4'}
+DEBUG:UserInterface:2025-10-23 19:26:13,298:start: Row: {'Gateway Name': 'Gateway 2', 'Linked Sensors': 'Sensor 2.1, Sensor 2.2'}
+DEBUG:UserInterface:2025-10-23 19:26:13,298:start: Row: {'Gateway Name': 'Gateway 3', 'Linked Sensors': 'Sensor 3.1, Sensor X.4'}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:30:44,269:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:30:44,269:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:30:44,270:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:30:44,398:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:30:44,398:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:30:44,398:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:30:44,399:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:30:44,399:query_database: Executing query: SELECT * FROM summaryview; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:30:44,399:execute_query: Running query: SELECT * FROM summaryview;
+DEBUG:AppServices:2025-10-23 19:30:44,402:query_database: Query returned 3 results.
+DEBUG:UserInterface:2025-10-23 19:30:44,403:start: Row: {'Gateway Name': 'Gateway 1', 'Linked Sensors': 'Sensor 1.1, Sensor 1.2, Sensor 1.3, Sensor X.4'}
+DEBUG:UserInterface:2025-10-23 19:30:44,403:start: Row: {'Gateway Name': 'Gateway 2', 'Linked Sensors': 'Sensor 2.1, Sensor 2.2'}
+DEBUG:UserInterface:2025-10-23 19:30:44,403:start: Row: {'Gateway Name': 'Gateway 3', 'Linked Sensors': 'Sensor 3.1, Sensor X.4'}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:38:30,703:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:38:30,704:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:38:30,704:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:38:30,829:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:38:30,830:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:38:30,830:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:38:30,830:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:38:30,830:query_database: Executing query: Create_Sensor("Test"); with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:38:30,831:execute_query: Running query: Create_Sensor("Test");
+ERROR:MySQLPersistenceWrapper:2025-10-23 19:38:30,832:execute_query: MySQL error: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Create_Sensor("Test")' at line 1
+DEBUG:AppServices:2025-10-23 19:38:30,832:query_database: Query returned 0 results.
+DEBUG:UserInterface:2025-10-23 19:38:30,833:start: No results found.
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:39:55,622:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:39:55,622:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:39:55,622:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:39:55,744:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:39:55,745:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:39:55,745:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:39:55,745:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:39:55,745:query_database: Executing query: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1"); with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:39:55,746:execute_query: Running query: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1");
+DEBUG:AppServices:2025-10-23 19:39:55,752:query_database: Query returned 0 results.
+DEBUG:UserInterface:2025-10-23 19:39:55,752:start: No results found.
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:41:09,999:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:41:09,999:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:41:09,999:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:41:10,116:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:41:10,116:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:41:10,116:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:41:10,117:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:41:10,117:query_database: Executing query: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1"); with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:41:10,117:execute_query: Running query: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1");
+DEBUG:AppServices:2025-10-23 19:41:10,122:query_database: Query returned 0 results.
+DEBUG:UserInterface:2025-10-23 19:41:10,122:start: No results found.
+DEBUG:AppServices:2025-10-23 19:41:10,122:query_database: Executing query: SELECT * FROM summaryview; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:41:10,122:execute_query: Running query: SELECT * FROM summaryview;
+DEBUG:AppServices:2025-10-23 19:41:10,125:query_database: Query returned 3 results.
+DEBUG:UserInterface:2025-10-23 19:41:10,126:start: Row: {'Gateway Name': 'Gateway 1', 'Linked Sensors': 'Sensor 1.1, Sensor 1.2, Sensor 1.3, Sensor X.4'}
+DEBUG:UserInterface:2025-10-23 19:41:10,126:start: Row: {'Gateway Name': 'Gateway 2', 'Linked Sensors': 'Sensor 2.1, Sensor 2.2'}
+DEBUG:UserInterface:2025-10-23 19:41:10,126:start: Row: {'Gateway Name': 'Gateway 3', 'Linked Sensors': 'Sensor 3.1, Sensor X.4'}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:44:42,515:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:44:42,515:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:44:42,515:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:44:42,639:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:44:42,639:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:44:42,639:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:44:42,640:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:44:42,640:execute_operation: Executing operation: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1"); with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:44:42,640:execute_operation: Executing non-query: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1");
+DEBUG:AppServices:2025-10-23 19:44:42,645:execute_operation: Operation executed successfully.
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:45:04,106:__init__:It works!
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:45:04,107:__init__: DB Connection Config Dict: {'database': 'sensors_and_gateways', 'user': 'root', 'password': 'toor', 'host': '127.0.0.1', 'port': 3306}
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:45:04,107:Creating connection pool...
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:45:04,236:_initialize_database_connection_pool: Connection pool successfully created!
+DEBUG:AppServices:2025-10-23 19:45:04,236:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:45:04,236:__init__:It works!
+DEBUG:UserInterface:2025-10-23 19:45:04,237:start: User interface started!
+DEBUG:AppServices:2025-10-23 19:45:04,237:execute_operation: Executing operation: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1"); with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:45:04,237:execute_operation: Executing non-query: CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1");
+ERROR:MySQLPersistenceWrapper:2025-10-23 19:45:04,239:execute_operation: MySQL error: 1062 (23000): Duplicate entry 'Sensor X.7' for key 'sensors.SensorName_UNIQUE'
+ERROR:AppServices:2025-10-23 19:45:04,239:execute_operation: Operation failed.
+DEBUG:AppServices:2025-10-23 19:45:04,240:query_database: Executing query: SELECT * FROM summaryview; with params: None
+DEBUG:MySQLPersistenceWrapper:2025-10-23 19:45:04,240:execute_query: Running query: SELECT * FROM summaryview;
+DEBUG:AppServices:2025-10-23 19:45:04,242:query_database: Query returned 3 results.
+DEBUG:UserInterface:2025-10-23 19:45:04,242:start: Row: {'Gateway Name': 'Gateway 1', 'Linked Sensors': 'Sensor 1.1, Sensor 1.2, Sensor 1.3, Sensor X.4, Sensor X.7'}
+DEBUG:UserInterface:2025-10-23 19:45:04,242:start: Row: {'Gateway Name': 'Gateway 2', 'Linked Sensors': 'Sensor 2.1, Sensor 2.2'}
+DEBUG:UserInterface:2025-10-23 19:45:04,243:start: Row: {'Gateway Name': 'Gateway 3', 'Linked Sensors': 'Sensor 3.1, Sensor X.4'}
