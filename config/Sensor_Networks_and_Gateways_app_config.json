@@ -1,8 +1,8 @@
 {
     "meta": {
         "version": "v1",
-        "app_name": "Application Name",
-        "log_prefix": "application_name"
+        "app_name": "Sensor_Networks_and_Gateways",
+        "log_prefix": "Sensor_Networks_and_Gateways_app"
     },
     "database": {
         "pool": {
