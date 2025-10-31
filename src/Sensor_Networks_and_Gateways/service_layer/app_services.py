@@ -15,20 +15,138 @@ class AppServices(ApplicationBase):
         self.DB = MySQLPersistenceWrapper(config)
         self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}:It works!')
 
-    # Template Methods -- replace these methods with the designated view operations in the DB.
-    def query_database(self, query:str, params:tuple=None)->list:
-        """Queries the database and returns results."""
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing query: {query} with params: {params}')
-        results = self.DB.execute_query(query, params)
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Query returned {len(results)} results.')
-        return results
+    
+# CRUD Operations -- Sensor
 
-    def execute_operation(self, operation:str, params:tuple=None)->bool:
-        """Executes a database operation. While we can use insert, we have procedures for most things."""
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing operation: {operation} with params: {params}')
-        success = self.DB.execute_operation(operation, params)
-        if success:
-            self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Operation executed successfully.')
-        else:
-            self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: Operation failed.')
-        return success
+def create_sensor():
+    """
+    Description: Creates a new sensor.
+    Calls Procedure: Create_Sensor
+    """
+    pass
+
+
+def get_sensor():
+    """
+    Description: Retrieves an existing sensor by name or ID.
+    Calls Procedure: (direct SELECT on Sensors)
+    """
+    pass
+
+
+def change_sensor_name():
+    """
+    Description: Renames an existing sensor.
+    Calls Procedure: Change_Sensor_Name
+    """
+    pass
+
+
+def delete_sensor():
+    """
+    Description: Deletes an existing sensor and all its links.
+    Calls Procedure: Delete_Sensor
+    """
+    pass
+
+
+# CRUD Operations -- Gateway
+
+
+def create_gateway():
+    """
+    Description: Creates a new gateway.
+    Calls Procedure: Create_Gateway
+    """
+    pass
+
+
+def get_gateway():
+    """
+    Description: Retrieves an existing gateway by name or ID.
+    Calls Procedure: (direct SELECT on Gateways)
+    """
+    pass
+
+
+def change_gateway_name():
+    """
+    Description: Renames an existing gateway.
+    Calls Procedure: Change_Gateway_Name
+    """
+    pass
+
+
+def delete_gateway():
+    """
+    Description: Deletes an existing gateway and its linked sensors.
+    Calls Procedure: Delete_Gateway
+    """
+    pass
+
+
+# Additional Business Logic Operations
+
+def quick_add():
+    """
+    Description: Creates a new sensor and automatically links it to an existing gateway.
+    Calls Procedure: Add_and_Autolink_Sensor
+    """
+    pass
+
+def link_sensor_to_gateway():
+    """
+    Description: Links an existing sensor to a gateway.
+    Calls Procedure: Link_Sensor
+    """
+    pass
+
+
+def unlink_sensor_from_gateway():
+    """
+    Description: Unlinks a sensor from a gateway or all gateways if none specified.
+    Calls Procedure: Unlink_Sensor
+    """
+    pass
+
+
+def get_sensors_for_gateway():
+    """
+    Description: Lists all sensors linked to a specific gateway.
+    Calls Procedure: (SELECT from SensorGatewayPairs view)
+    """
+    pass
+
+
+def get_gateways_for_sensor():
+    """
+    Description: Lists all gateways linked to a specific sensor.
+    Calls Procedure: (SELECT from SensorGatewayPairs view)
+    """
+    pass
+
+
+def get_all_sensors():
+    """
+    Description: Retrieves all sensors in the system.
+    Calls Procedure: (SELECT * FROM Sensors)
+    """
+    pass
+
+
+def get_all_gateways():
+    """
+    Description: Retrieves all gateways in the system.
+    Calls Procedure: (SELECT * FROM Gateways)
+    """
+    pass
+
+
+# User Interface Views
+
+def get_summary():
+    """
+    Description: Returns a summary of gateways and their linked sensors.
+    Calls Procedure: (SELECT * FROM SummaryView)
+    """
+    pass
