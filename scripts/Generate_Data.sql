@@ -19,12 +19,12 @@ INSERT INTO Sensors (SensorName) VALUES ("Sensor 3.1");
 
 -- ESTABOLISH RELATNSHIPS
 
-INSERT INTO SensorsGatewayXref (SensorsGatewayXref_GatewayId, SensorsGatewayXref_SensorId) VALUES (1,1);
-INSERT INTO SensorsGatewayXref (SensorsGatewayXref_GatewayId, SensorsGatewayXref_SensorId) VALUES (1,2);
-INSERT INTO SensorsGatewayXref (SensorsGatewayXref_GatewayId, SensorsGatewayXref_SensorId) VALUES (1,3);
-INSERT INTO SensorsGatewayXref (SensorsGatewayXref_GatewayId, SensorsGatewayXref_SensorId) VALUES (2,4);
-INSERT INTO SensorsGatewayXref (SensorsGatewayXref_GatewayId, SensorsGatewayXref_SensorId) VALUES (2,5);
-INSERT INTO SensorsGatewayXref (SensorsGatewayXref_GatewayId, SensorsGatewayXref_SensorId) 
+INSERT INTO SensorsGatewaysXref (idGateway, idSensor) VALUES (1,1);
+INSERT INTO SensorsGatewaysXref (idGateway, idSensor) VALUES (1,2);
+INSERT INTO SensorsGatewaysXref (idGateway, idSensor) VALUES (1,3);
+INSERT INTO SensorsGatewaysXref (idGateway, idSensor) VALUES (2,4);
+INSERT INTO SensorsGatewaysXref (idGateway, idSensor) VALUES (2,5);
+INSERT INTO SensorsGatewaysXref (idGateway, idSensor) 
 
 SELECT idGateway, idSensor FROM Gateways JOIN Sensors WHERE
 	GatewayName = "Gateway 3" AND
