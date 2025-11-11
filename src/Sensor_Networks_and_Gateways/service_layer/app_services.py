@@ -131,7 +131,8 @@ def get_all_sensors():
     Description: Retrieves all sensors in the system.
     Calls Procedure: (SELECT * FROM Sensors)
     """
-    pass
+    return self.DB.execute_query('SELECT * FROM Sensors')
+
 
 
 def get_all_gateways():
@@ -141,7 +142,6 @@ def get_all_gateways():
     """
     pass
 
-
 # User Interface Views
 
 def get_summary():
@@ -150,3 +150,4 @@ def get_summary():
     Calls Procedure: (SELECT * FROM SummaryView)
     """
     pass
+
