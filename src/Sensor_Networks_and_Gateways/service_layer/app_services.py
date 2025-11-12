@@ -15,139 +15,91 @@ class AppServices(ApplicationBase):
         self.DB = MySQLPersistenceWrapper(config)
         self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}:It works!')
 
+        
+    # Data Gathering Functions
+    def get_summary(self)->list:
+        """Returns all sensors in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting summary of all sensors.')
+        results = self.DB.get_summary()
+        return results
     
-# CRUD Operations -- Sensor
-
-def create_sensor():
-    """
-    Description: Creates a new sensor.
-    Calls Procedure: Create_Sensor
-    """
-    pass
-
-
-def get_sensor():
-    """
-    Description: Retrieves an existing sensor by name or ID.
-    Calls Procedure: (direct SELECT on Sensors)
-    """
-    pass
-
-
-def change_sensor_name():
-    """
-    Description: Renames an existing sensor.
-    Calls Procedure: Change_Sensor_Name
-    """
-    pass
-
-
-def delete_sensor():
-    """
-    Description: Deletes an existing sensor and all its links.
-    Calls Procedure: Delete_Sensor
-    """
-    pass
-
-
-# CRUD Operations -- Gateway
-
-
-def create_gateway():
-    """
-    Description: Creates a new gateway.
-    Calls Procedure: Create_Gateway
-    """
-    pass
-
-
-def get_gateway():
-    """
-    Description: Retrieves an existing gateway by name or ID.
-    Calls Procedure: (direct SELECT on Gateways)
-    """
-    pass
-
-
-def change_gateway_name():
-    """
-    Description: Renames an existing gateway.
-    Calls Procedure: Change_Gateway_Name
-    """
-    pass
-
-
-def delete_gateway():
-    """
-    Description: Deletes an existing gateway and its linked sensors.
-    Calls Procedure: Delete_Gateway
-    """
-    pass
-
-
-# Additional Business Logic Operations
-
-def quick_add():
-    """
-    Description: Creates a new sensor and automatically links it to an existing gateway.
-    Calls Procedure: Add_and_Autolink_Sensor
-    """
-    pass
-
-def link_sensor_to_gateway():
-    """
-    Description: Links an existing sensor to a gateway.
-    Calls Procedure: Link_Sensor
-    """
-    pass
-
-
-def unlink_sensor_from_gateway():
-    """
-    Description: Unlinks a sensor from a gateway or all gateways if none specified.
-    Calls Procedure: Unlink_Sensor
-    """
-    pass
-
-
-def get_sensors_for_gateway():
-    """
-    Description: Lists all sensors linked to a specific gateway.
-    Calls Procedure: (SELECT from SensorGatewayPairs view)
-    """
-    pass
-
-
-def get_gateways_for_sensor():
-    """
-    Description: Lists all gateways linked to a specific sensor.
-    Calls Procedure: (SELECT from SensorGatewayPairs view)
-    """
-    pass
-
-
-def get_all_sensors():
-    """
-    Description: Retrieves all sensors in the system.
-    Calls Procedure: (SELECT * FROM Sensors)
-    """
-    return self.DB.execute_query('SELECT * FROM Sensors')
-
-
-
-def get_all_gateways():
-    """
-    Description: Retrieves all gateways in the system.
-    Calls Procedure: (SELECT * FROM Gateways)
-    """
-    pass
-
-# User Interface Views
-
-def get_summary():
-    """
-    Description: Returns a summary of gateways and their linked sensors.
-    Calls Procedure: (SELECT * FROM SummaryView)
-    """
-    pass
-
+    def get_all_sensors(self)->list:
+        """Returns all sensors in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting all sensors.')
+        results = self.DB.get_all_sensors()
+        return results
+    
+    def get_all_gateways(self)->list:
+        """Returns all gateways in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting all gateways.')
+        results = self.DB.get_all_gateways()
+        return results
+    
+    # Data Creation Functions
+    def add_sensor(self, sensor_name:str)->bool:
+        """Adds a sensor to the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Adding sensor: {sensor_name}')
+        result = self.DB.create_sensor(sensor_name)
+        return result
+    
+    def add_gateway(self, gateway_name:str)->bool:
+        """Adds a gateway to the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Adding gateway: {gateway_name}')
+        result = self.DB.create_gateway(gateway_name)
+        return result
+    
+    def quick_add_sensor(self, sensor_name:str, gateway_name:str)->bool:
+        """Adds a sensor to the database and assigns it to a gateway."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Adding sensor: {sensor_name} to gateway: {gateway_name}')
+        result = self.DB.add_and_autolink_sensor(sensor_name, gateway_name)
+        return result
+    
+    # Data Update Functions
+    def link_sensor(self, sensor_name:str, gateway_name:str)->bool:
+        """Links a sensor to a gateway."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Linking sensor: {sensor_name} to gateway: {gateway_name}')
+        result = self.DB.link_sensor(sensor_name, gateway_name)
+        return result
+    
+    def unlink_sensor(self, sensor_name:str)->bool:
+        """Unlinks a sensor from its gateway."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Unlinking sensor: {sensor_name} from its gateway.')
+        result = self.DB.unlink_sensor(sensor_name)
+        return result
+    
+    def reset_sensor(self, sensor_name:str)->bool:
+        """Resets a sensor's data."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Resetting sensor: {sensor_name}')
+        result = self.DB.reset_sensor(sensor_name)
+        return result
+    
+    def reset_gateway(self, gateway_name:str)->bool:
+        """Resets a gateway's data."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Resetting gateway: {gateway_name}')
+        result = self.DB.reset_gateway(gateway_name)
+        return result
+    
+    def update_sensor_name(self, old_name:str, new_name:str)->bool:
+        """Updates a sensor's name."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Updating sensor name from: {old_name} to: {new_name}')
+        result = self.DB.update_sensor_name(old_name, new_name)
+        return result
+    
+    def update_gateway_name(self, old_name:str, new_name:str)->bool:
+        """Updates a gateway's name."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Updating gateway name from: {old_name} to: {new_name}')
+        result = self.DB.update_gateway_name(old_name, new_name)
+        return result
+    
+    # Data Deletion Functions
+    def delete_sensor(self, sensor_name:str)->bool:
+        """Deletes a sensor from the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Deleting sensor: {sensor_name}')
+        result = self.DB.delete_sensor(sensor_name)
+        return result
+    
+    def delete_gateway(self, gateway_name:str)->bool:
+        """Deletes a gateway from the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Deleting gateway: {gateway_name}')
+        result = self.DB.delete_gateway(gateway_name)
+        return result

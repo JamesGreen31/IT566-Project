@@ -1,9 +1,5 @@
--- -----------------------------------------------------
--- PROCEDURE and VIEW Creation script
--- -----------------------------------------------------
-USE `sensors_and_gateways`;
 
-
+USE `sensors_and_gateways` ;
 
 -- -----------------------------------------------------
 -- Placeholder table for view `sensors_and_gateways`.`SensorGatewayPairs`
@@ -241,61 +237,107 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure Reset_Sensor
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sensors_and_gateways`$$
+CREATE PROCEDURE `Reset_Sensor` (
+	IN p_sensor_name VARCHAR(45))
+BEGIN
+	DECLARE sensor_id INT;
+    DECLARE gateway_id INT;
+    DECLARE xc_link INT;
+	
+    SELECT idSensor INTO sensor_id FROM Sensors WHERE
+		SensorName = p_sensor_name;
+        
+	IF sensor_id IS NULL THEN
+		SIGNAL SQLSTATE '45000' 
+			SET MESSAGE_TEXT = "Specified Sensor Name does not exist";
+    END IF;
+	
+	SELECT idSensor INTO xc_link FROM SensorsGatewaysXref xc WHERE
+		xc.idSensor = sensor_id;
+        
+    DELETE FROM SensorsGatewaysXref WHERE
+		xc.idSensor = sensor_id;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure Unlink_Sensor
 -- -----------------------------------------------------
 
 DELIMITER $$
 USE `sensors_and_gateways`$$
 CREATE PROCEDURE `Unlink_Sensor` (
-    IN p_sensor_name VARCHAR(45),
-    IN p_gateway_name VARCHAR(45)  -- can be NULL if you want to unlink from all gateways
+	IN p_sensor_name VARCHAR(45),
+    IN p_existing_gateway_name VARCHAR(45)
 )
 BEGIN
-    DECLARE sensor_id INT;
+	DECLARE sensor_id INT;
     DECLARE gateway_id INT;
-
-    -- Find sensor ID
-    SELECT idSensor INTO sensor_id 
-    FROM Sensors 
-    WHERE SensorName = p_sensor_name;
-
-    IF sensor_id IS NULL THEN
-        SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Specified sensor name does not exist';
+    DECLARE xc_link INT;
+	
+    SELECT idSensor INTO sensor_id FROM Sensors WHERE
+		SensorName = p_sensor_name;
+        
+	IF sensor_id IS NULL THEN
+		SIGNAL SQLSTATE '45000' 
+			SET MESSAGE_TEXT = "Specified Sensor Name does not exist";
     END IF;
-
-    -- If gateway name was given, find its ID
-    IF p_gateway_name IS NOT NULL THEN
-        SELECT idGateway INTO gateway_id
-        FROM Gateways
-        WHERE GatewayName = p_gateway_name;
-
-        IF gateway_id IS NULL THEN
-            SIGNAL SQLSTATE '45000'
-                SET MESSAGE_TEXT = 'Specified gateway name does not exist';
-        END IF;
-
-        -- Delete only that specific link
-        DELETE FROM SensorsGatewaysXref
-        WHERE idSensor = sensor_id
-          AND idGateway = gateway_id;
-
-        IF ROW_COUNT() = 0 THEN
-            SIGNAL SQLSTATE '45000'
-                SET MESSAGE_TEXT = 'No link found between given sensor and gateway';
-        END IF;
-
-    ELSE
-        -- No gateway name provided, unlink from all gateways
-        DELETE FROM SensorsGatewaysXref
-        WHERE idSensor = sensor_id;
-
-        IF ROW_COUNT() = 0 THEN
-            SIGNAL SQLSTATE '45000'
-                SET MESSAGE_TEXT = 'No links found for the given sensor';
-        END IF;
+        
+    SELECT idGateway INTO gateway_id FROM Gateways WHERE
+		GatewayName = p_existing_gateway_name;
+	
+	IF gateway_id IS NULL THEN
+		SIGNAL SQLSTATE '45000' 
+			SET MESSAGE_TEXT = "Specified Gateway Name does not exist";
     END IF;
+	
+	SELECT idSensor INTO xc_link FROM SensorsGatewaysXref xc WHERE
+		xc.idSensor = sensor_id AND
+        xc.idGateway = gateway_id;
+	
+    IF xc_link IS NULL THEN
+		SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = "Sensor not linked to gateway";
+    END IF;
+    
+    DELETE FROM SensorsGatewaysXref WHERE
+    xc.idSensor = sensor_id AND
+    xc.idGateway = gateway_id;
+END$$
 
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Reset_Gateway
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sensors_and_gateways`$$
+CREATE PROCEDURE `Reset_Gateway` (
+	IN p_gateway_name VARCHAR(45))
+BEGIN
+    DECLARE gateway_id INT;
+    DECLARE xc_link INT;
+	
+    SELECT idGateway INTO gateway_id FROM Gateways WHERE
+		GatewayName = p_gateway_name;
+        
+	IF gateway_id IS NULL THEN
+		SIGNAL SQLSTATE '45000' 
+			SET MESSAGE_TEXT = "Specified Gateway Name does not exist";
+    END IF;
+	
+	SELECT idGateway INTO xc_link FROM SensorsGatewaysXref xc WHERE
+		xc.idGateway = gateway_id;
+        
+    DELETE FROM SensorsGatewaysXref WHERE
+		xc.idGateway = gateway_id;
 END$$
 
 DELIMITER ;

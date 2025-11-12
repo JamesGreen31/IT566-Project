@@ -4,7 +4,8 @@ from Sensor_Networks_and_Gateways.application_base import ApplicationBase
 from Sensor_Networks_and_Gateways.service_layer.app_services import AppServices
 import inspect
 import json
-
+import sys
+from prettytable import PrettyTable;
 class UserInterface(ApplicationBase):
     """UserInterface Class Definition."""
     def __init__(self, config:dict)->None:
@@ -19,14 +20,68 @@ class UserInterface(ApplicationBase):
     # Template Start -- Create a user interface here. This just estabolishes the basic connection to db.
     def start(self):
         """Start main user interface."""
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User interface started!')
-        query = 'CALL `Add_and_Autolink_Sensor`("Sensor X.7", "Gateway 1");'
-        results = self.DB.execute_operation(query)
-       
-        query2 = 'SELECT * FROM summaryview;'
-        results2 = self.DB.query_database(query2)
-        if results2:
-            for row in results2:
-                self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Row: {row}')
-        else:
-            self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: No results found.')
+        while True:
+            userin = input("Enter a command option: \n\t1) View Summary  \n\t2) View All Sensors  \n\t3) View All Gateways  \n\t4) Add Sensor  \n\t5) Add Gateway  \n\t6)Quick Add Sensor \n\t7) Link Sensor to Gateway  \n\t8) Exit \n")
+            match userin:
+                case "1":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 1: View Summary')
+                    results = self.DB.get_summary()
+                    table = PrettyTable()
+                    table.field_names = ["Gateway Name", "Sensor Name"]
+                    for row in results:
+                        table.add_row(row)
+                    print(table)
+                case "2":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 2: View All Sensors')
+                    results = self.DB.get_all_sensors()
+                    table = PrettyTable()
+                    table.field_names = ["Sensor Name"]
+                    for row in results:
+                        table.add_row(row)  
+                    print(table)
+                case "3":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 3: View All Gateways')
+                    results = self.DB.get_all_gateways()
+                    table = PrettyTable()
+                    table.field_names = ["Gateway Name"]
+                    for row in results:
+                        table.add_row(row)  
+                    print(table)
+                case "4":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 4: Add Sensor')
+                    sensor_name = input("Enter the name of the sensor to add: ")    
+                    result = self.DB.add_sensor(sensor_name)
+                    if result:
+                        print(f"Sensor '{sensor_name}' added successfully.")
+                    else:
+                        print(f"Failed to add sensor '{sensor_name}'.")
+                case "5":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 5: Add Gateway')
+                    gateway_name = input("Enter the name of the gateway to add: ")
+                    result = self.DB.add_gateway(gateway_name)
+                    if result:
+                        print(f"Gateway '{gateway_name}' added successfully.")
+                    else:
+                        print(f"Failed to add gateway '{gateway_name}'.")
+                case "6":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 6: Quick Add Sensor')
+                    sensor_name = input("Enter the name of the sensor to add: ")
+                    gateway_name = input("Enter the name of the gateway to link to: ")
+                    result = self.DB.quick_add_sensor(sensor_name, gateway_name)
+                    if result:
+                        print(f"Sensor '{sensor_name}' added and linked to gateway '{gateway_name}' successfully.")
+                    else:
+                        print(f"Failed to add sensor '{sensor_name}' and link to gateway '{gateway_name}'.")
+                case "7":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 7: Link Sensor to Gateway')
+                    sensor_name = input("Enter the name of the sensor to link: ")
+                    gateway_name = input("Enter the name of the gateway to link to: ")
+                    result = self.DB.link_sensor(sensor_name, gateway_name)
+                    if result:
+                        print(f"Sensor '{sensor_name}' linked to gateway '{gateway_name}' successfully.")
+                    else:
+                        print(f"Failed to link sensor '{sensor_name}' to gateway '{gateway_name}'.")
+                case "8":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 8: Exit')
+                    print("Exiting the application.")
+                    sys.exit(0)
