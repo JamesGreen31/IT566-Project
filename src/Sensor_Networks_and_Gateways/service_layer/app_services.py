@@ -15,20 +15,91 @@ class AppServices(ApplicationBase):
         self.DB = MySQLPersistenceWrapper(config)
         self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}:It works!')
 
-    # Template Methods -- replace these methods with the designated view operations in the DB.
-    def query_database(self, query:str, params:tuple=None)->list:
-        """Queries the database and returns results."""
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing query: {query} with params: {params}')
-        results = self.DB.execute_query(query, params)
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Query returned {len(results)} results.')
+        
+    # Data Gathering Functions
+    def get_summary(self)->list:
+        """Returns all sensors in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting summary of all sensors.')
+        results = self.DB.get_summary()
         return results
-
-    def execute_operation(self, operation:str, params:tuple=None)->bool:
-        """Executes a database operation. While we can use insert, we have procedures for most things."""
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing operation: {operation} with params: {params}')
-        success = self.DB.execute_operation(operation, params)
-        if success:
-            self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Operation executed successfully.')
-        else:
-            self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: Operation failed.')
-        return success
+    
+    def get_all_sensors(self)->list:
+        """Returns all sensors in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting all sensors.')
+        results = self.DB.get_all_sensors()
+        return results
+    
+    def get_all_gateways(self)->list:
+        """Returns all gateways in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting all gateways.')
+        results = self.DB.get_all_gateways()
+        return results
+    
+    # Data Creation Functions
+    def add_sensor(self, sensor_name:str)->bool:
+        """Adds a sensor to the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Adding sensor: {sensor_name}')
+        result = self.DB.create_sensor(sensor_name)
+        return result
+    
+    def add_gateway(self, gateway_name:str)->bool:
+        """Adds a gateway to the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Adding gateway: {gateway_name}')
+        result = self.DB.create_gateway(gateway_name)
+        return result
+    
+    def quick_add_sensor(self, sensor_name:str, gateway_name:str)->bool:
+        """Adds a sensor to the database and assigns it to a gateway."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Adding sensor: {sensor_name} to gateway: {gateway_name}')
+        result = self.DB.add_and_autolink_sensor(sensor_name, gateway_name)
+        return result
+    
+    # Data Update Functions
+    def link_sensor(self, sensor_name:str, gateway_name:str)->bool:
+        """Links a sensor to a gateway."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Linking sensor: {sensor_name} to gateway: {gateway_name}')
+        result = self.DB.link_sensor(sensor_name, gateway_name)
+        return result
+    
+    def unlink_sensor(self, sensor_name:str)->bool:
+        """Unlinks a sensor from its gateway."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Unlinking sensor: {sensor_name} from its gateway.')
+        result = self.DB.unlink_sensor(sensor_name)
+        return result
+    
+    def reset_sensor(self, sensor_name:str)->bool:
+        """Resets a sensor's data."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Resetting sensor: {sensor_name}')
+        result = self.DB.reset_sensor(sensor_name)
+        return result
+    
+    def reset_gateway(self, gateway_name:str)->bool:
+        """Resets a gateway's data."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Resetting gateway: {gateway_name}')
+        result = self.DB.reset_gateway(gateway_name)
+        return result
+    
+    def update_sensor_name(self, old_name:str, new_name:str)->bool:
+        """Updates a sensor's name."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Updating sensor name from: {old_name} to: {new_name}')
+        result = self.DB.update_sensor_name(old_name, new_name)
+        return result
+    
+    def update_gateway_name(self, old_name:str, new_name:str)->bool:
+        """Updates a gateway's name."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Updating gateway name from: {old_name} to: {new_name}')
+        result = self.DB.update_gateway_name(old_name, new_name)
+        return result
+    
+    # Data Deletion Functions
+    def delete_sensor(self, sensor_name:str)->bool:
+        """Deletes a sensor from the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Deleting sensor: {sensor_name}')
+        result = self.DB.delete_sensor(sensor_name)
+        return result
+    
+    def delete_gateway(self, gateway_name:str)->bool:
+        """Deletes a gateway from the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Deleting gateway: {gateway_name}')
+        result = self.DB.delete_gateway(gateway_name)
+        return result
