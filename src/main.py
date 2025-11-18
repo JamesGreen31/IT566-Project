@@ -1,4 +1,4 @@
-"""Entry point for the Employee Training Application."""
+"""Entry point for the Sensors and Gateways Application."""
 
 import json
 from argparse import ArgumentParser
