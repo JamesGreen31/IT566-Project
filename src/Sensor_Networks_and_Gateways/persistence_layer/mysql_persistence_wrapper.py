@@ -40,7 +40,9 @@ class MySQLPersistenceWrapper(ApplicationBase):
 		self.SELECT_ALL_SENSORS = f"SELECT `SensorName` AS \"Sensor Name\" FROM `Sensors`;"
 		self.SELECT_ALL_GATEWAYS = f"SELECT `GatewayName` AS \"Gateway Name\" FROM `Gateways`;"
 		self.SELECT_ALL_SUMMARY = f"SELECT `Gateway Name`, `Linked Sensors` FROM `SummaryView`;"
-		
+		self.SELECT_SPECIFIC_SENSOR = f"SELECT `SensorName` AS \"Sensor Name\" FROM `Sensors` WHERE `SensorName` = %s;"
+		self.SELECT_SPECIFIC_GATEWAY = f"SELECT `GatewayName` AS \"Gateway Name\" FROM `Gateways` WHERE `GatewayName` = %s;"
+
 		# CREATE Statements
 		self.CALL_CREATE_SENSOR = f"CALL `Create_Sensor`(%s);"
 		self.CALL_CREATE_GATEWAY = f"CALL `Create_Gateway`(%s);"
@@ -77,6 +79,18 @@ class MySQLPersistenceWrapper(ApplicationBase):
 		"""Returns all sensors in the database using execute query."""
 		self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Getting summary of all gateways and linked sensors')
 		results = self._execute_query(self.SELECT_ALL_SUMMARY)
+		return results
+	
+	def get_specific_sensor(self, sensor_name:str)->List[dict]:
+		"""Checks if a sensor exists in the database."""
+		self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Checking if sensor "{sensor_name}" exists')
+		results = self._execute_query(self.SELECT_SPECIFIC_SENSOR, (sensor_name,))
+		return results
+
+	def get_specific_gateway(self, gateway_name:str)->List[dict]:
+		"""Checks if a gateway exists in the database."""
+		self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Checking if gateway "{gateway_name}" exists')
+		results = self._execute_query(self.SELECT_SPECIFIC_GATEWAY, (gateway_name,))
 		return results
 
 	# CREATE Methods

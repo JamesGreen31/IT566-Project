@@ -6,7 +6,7 @@
     },
     "database": {
         "pool": {
-            "name": "app_name_db_pool",
+            "name": "sesnors_and_gateways_db_pool",
             "size": 10,
             "reset_session": true,
             "use_pure": true

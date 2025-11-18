@@ -21,7 +21,7 @@ class UserInterface(ApplicationBase):
     def start(self):
         """Start main user interface."""
         while True:
-            userin = input("Enter a command option: \n\t1) View Summary  \n\t2) View All Sensors  \n\t3) View All Gateways  \n\t4) Add Sensor  \n\t5) Add Gateway  \n\t6)Quick Add Sensor \n\t7) Link Sensor to Gateway  \n\t8) Exit \n")
+            userin = input("Enter a command option: \n\t1) View Summary  \n\t2) View All Sensors  \n\t3) View All Gateways  \n\t4) Add Sensor  \n\t5) Add Gateway  \n\t6) Quick Add Sensor \n\t7) Link Sensor to Gateway  \n\t8) Delete Sensor \n\t9) Delete Gateway \n\t10) Exit\n")
             match userin:
                 case "1":
                     self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 1: View Summary')
@@ -82,6 +82,45 @@ class UserInterface(ApplicationBase):
                     else:
                         print(f"Failed to link sensor '{sensor_name}' to gateway '{gateway_name}'.")
                 case "8":
-                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 8: Exit')
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 8: Delte Sensor')
+                    sensor_name = input("Enter the name of the sensor to delete: ")
+                    temporary_result = self.DB.check_sensor_exists(sensor_name)
+                    if not temporary_result:
+                        print(f"Sensor '{sensor_name}' does not exist.")
+                        continue
+                    else:
+                        print(f"Are you sure you want to delete {sensor_name}? This action cannot be undone. (y/n)")
+                        confirmation = input()
+                        if confirmation.lower() != 'y':
+                            print("Deletion cancelled.")
+                            continue
+                    result = self.DB.delete_sensor(sensor_name)
+                    if result:
+                        print(f"Sensor '{sensor_name}' deleted successfully.")
+                    else:
+                        print(f"Failed to delete sensor '{sensor_name}'.")
+                case "9":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 9: Delete Gateway')
+                    gateway_name = input("Enter the name of the gateway to delete: ")
+                    temporary_result = self.DB.check_gateway_exists(gateway_name)
+                    if not temporary_result:
+                        print(f"Gateway '{gateway_name}' does not exist.")
+                        continue
+                    else:
+                        print(f"Are you sure you want to delete {gateway_name}? This action cannot be undone. (y/n)")
+                        confirmation = input()
+                        if confirmation.lower() != 'y':
+                            print("Deletion cancelled.")
+                            continue
+                    result = self.DB.delete_gateway(gateway_name)
+                    if result:
+                        print(f"Gateway '{gateway_name}' deleted successfully.")
+                    else:
+                        print(f"Failed to delete gateway '{gateway_name}'.")
+                case "10":
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected option 10: Exit')
                     print("Exiting the application.")
                     sys.exit(0)
+                case _:
+                    self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: User selected an invalid option: {userin}')
+                    print("Invalid option. Please try again.")
