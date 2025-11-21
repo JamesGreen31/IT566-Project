@@ -244,7 +244,7 @@ BEGIN
     DECLARE n_sensor_id INT;
     SELECT idSensor INTO o_sensor_id FROM
     Sensors WHERE
-    SensorName = p_new_sensor_name;
+    SensorName = p_old_sensor_name;
     
 	SELECT idSensor INTO n_sensor_id FROM
     Sensors WHERE
@@ -277,7 +277,7 @@ BEGIN
     DECLARE n_Gateway_id INT;
     SELECT idGateway INTO o_Gateway_id FROM
     Gateways WHERE
-    GatewayName = p_new_Gateway_name;
+    GatewayName = o_Gateway_id;
     
 	SELECT idGateway INTO n_Gateway_id FROM
     Gateways WHERE
