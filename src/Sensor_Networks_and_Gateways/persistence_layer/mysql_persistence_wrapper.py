@@ -170,7 +170,7 @@ class MySQLPersistenceWrapper(ApplicationBase):
 			self._logger.log_error(f'{inspect.currentframe().f_code.co_name}: General error: {e}')
 			return []
 
-	def _execute_operation(self, query:str, params:tuple=None)->int:
+	def _execute_operation(self, query:str, params:tuple=None)->list:
 		"""Executes Database operations."""
 		try:
 			self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Executing operation: {query}')

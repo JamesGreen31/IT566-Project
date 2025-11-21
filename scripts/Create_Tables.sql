@@ -1,4 +1,3 @@
-USE `sensors_and_gateways`;
 
 -- -----------------------------------------------------
 -- Table `sensors_and_gateways`.`Sensors`
