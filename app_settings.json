@@ -1,1 +1,1 @@
-{"logs_dir": "logs", "log_filename": "app.log", "log_level": "debug", "log_to_console": true, "log_to_file": true, "deployed_to_production": false}
+{"logs_dir": "logs", "log_filename": "app.log", "log_level": "critical", "log_to_console": true, "log_to_file": true, "deployed_to_production": false}

@@ -35,6 +35,18 @@ class AppServices(ApplicationBase):
         results = self.DB.get_all_gateways()
         return results
     
+    def check_sensor_exists(self, sensor_name:str)->bool:
+        """Checks if a sensor exists in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Checking if sensor "{sensor_name}" exists.')
+        result = self.DB.get_specific_sensor(sensor_name)
+        return len(result) > 0
+    
+    def check_gateway_exists(self, gateway_name:str)->bool:
+        """Checks if a gateway exists in the database."""
+        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}: Checking if gateway "{gateway_name}" exists.')
+        result = self.DB.get_specific_gateway(gateway_name)
+        return len(result) > 0
+    
     # Data Creation Functions
     def add_sensor(self, sensor_name:str)->bool:
         """Adds a sensor to the database."""

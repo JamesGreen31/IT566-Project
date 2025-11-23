@@ -1,4 +1,3 @@
-
 USE `sensors_and_gateways` ;
 
 -- -----------------------------------------------------
@@ -138,7 +137,8 @@ BEGIN
     
     -- Convert Gateway name into gateway ID (Note: We don't explicitly have to do this because Gateway name is unqiue
     -- but for the sake of sanity and consistency, we will do so anyway.
-    SELECT idGateway INTO gateway_id FROM Gateways;
+    SELECT idGateway INTO gateway_id FROM Gateways g WHERE 
+        g.gatewayName = p_existing_gateway;
     
     -- If the gateway name was not present in the database, throw an error.
     IF gateway_id IS NULL THEN
@@ -164,7 +164,7 @@ CREATE PROCEDURE `Delete_Sensor` (
 )
 BEGIN
 	-- Since sensor name is unique, we do not have to filter it by key
-    DELETE FROM Sensor WHERE
+    DELETE FROM Sensors WHERE
 		SensorName = p_existing_sensor;
 END$$
 
@@ -185,7 +185,7 @@ BEGIN
     DECLARE n_sensor_id INT;
     SELECT idSensor INTO o_sensor_id FROM
     Sensors WHERE
-    SensorName = p_new_sensor_name;
+    SensorName = p_old_sensor_name;
     
 	SELECT idSensor INTO n_sensor_id FROM
     Sensors WHERE
@@ -218,7 +218,7 @@ BEGIN
     DECLARE n_Gateway_id INT;
     SELECT idGateway INTO o_Gateway_id FROM
     Gateways WHERE
-    GatewayName = p_new_Gateway_name;
+    GatewayName = p_old_Gateway_name;
     
 	SELECT idGateway INTO n_Gateway_id FROM
     Gateways WHERE
@@ -336,8 +336,9 @@ BEGIN
 	SELECT idGateway INTO xc_link FROM SensorsGatewaysXref xc WHERE
 		xc.idGateway = gateway_id;
         
+    
     DELETE FROM SensorsGatewaysXref WHERE
-		xc.idGateway = gateway_id;
+		xc.idSensor = sensor_id;
 END$$
 
 DELIMITER ;

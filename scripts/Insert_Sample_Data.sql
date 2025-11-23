@@ -34,4 +34,3 @@ SELECT idGateway, idSensor FROM Gateways JOIN Sensors WHERE
 
 CALL `Add_and_Autolink_Sensor`("Sensor X.4", "Gateway 1");
 CALL `Link_Sensor`("Sensor X.4", "Gateway 3");
-SELECT * FROM `SensorGatewayPairsExtendedSummary`;
