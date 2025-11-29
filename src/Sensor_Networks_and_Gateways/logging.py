@@ -5,18 +5,19 @@ import logging.handlers
 from Sensor_Networks_and_Gateways.settings import Settings
 import os
 
+
 class LoggingService():
     """Provides logging services."""
 
-    def __init__(self, class_name:str, logfile_prefix_name:str=None)->None:
+    def __init__(self, class_name: str, logfile_prefix_name: str = None) -> None:
         """Initialize instance."""
-        
+
         self._logger = logging.getLogger(class_name)
         self._logger.propagate = False
         self._settings_dict = Settings().read_settings_file_from_location()
         self._logfile_prefix_name = logfile_prefix_name
         self.log_level = logging.ERROR
-        
+
         if self._settings_dict['log_level'] == 'notset':
             self._logger.setLevel(logging.NOTSET)
             self.log_level = logging.NOTSET
@@ -40,7 +41,7 @@ class LoggingService():
             self.log_level = logging.ERROR
 
         self._formatter = \
-                logging.Formatter('%(levelname)s:%(name)s:%(asctime)s:%(message)s')
+            logging.Formatter('%(levelname)s:%(name)s:%(asctime)s:%(message)s')
 
         if not self._logger.handlers:
             if self._settings_dict['log_to_console']:
@@ -50,17 +51,15 @@ class LoggingService():
                 self._logger.addHandler(self._ch)
 
             if self._settings_dict['log_to_file']:
-                log_file = os.path.join(self._settings_dict['logs_dir'], 
-                            f"{self._logfile_prefix_name}_" \
-                            f"{self._settings_dict['log_filename']}")
-                self._fh = logging.handlers.TimedRotatingFileHandler(log_file, 
-                            when='midnight', backupCount=20)
+                log_file = os.path.join(self._settings_dict['logs_dir'],
+                                        f"{self._logfile_prefix_name}_"
+                                        f"{self._settings_dict['log_filename']}")
+                self._fh = logging.handlers.TimedRotatingFileHandler(log_file,
+                                                                     when='midnight', backupCount=20)
                 self._fh.setLevel(logging.DEBUG)
                 self._fh.setFormatter(self._formatter)
                 self._logger.addHandler(self._fh)
-        
 
-    
     def log_debug(self, message):
         """Log to debug."""
         self._logger.debug(message)
@@ -80,4 +79,3 @@ class LoggingService():
     def log_critical(self, message):
         """Log to critical."""
         self._logger.critical(message)
-

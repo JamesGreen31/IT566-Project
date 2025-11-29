@@ -12,20 +12,20 @@ IT Sensor Networks and Gateways
 
 # Project Description:
 
-Sensors can connect to multiple gateways (mesh) and gateways manage many sensors.
+Sensors can connect to multiple gateways(mesh) and gateways manage many sensors.
 
 # Primary Database Entities:
 
-    Sensor, Gateway
+ Sensor, Gateway
 
 # Cross-Reference Table:
 
-    connection_xref
+  connection_xref
 
 # Provided:
 
-    - *Application Framework* which provides logging, configuration, application settings, and an applicable base class.
-        https://github.com/pulpfreepress/it566_project_app_framework
+   - *Application Framework * which provides logging, configuration, application settings, and an applicable base class .
+       https: // github.com/pulpfreepress/it566_project_app_framework
 
     - Bash script examples to automate various aspects of database initialization, testing, and running the project.
 

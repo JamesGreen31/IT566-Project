@@ -10,13 +10,14 @@
             "size": 10,
             "reset_session": true,
             "use_pure": true
+
         },
         "connection": {
             "config": {
-                "database": "<REDACTED",
-                "user": "<REDACTED",
-                "password": "<REDACTED>",
-                "host": "<REDACTED",
+                "database": "sensors_and_gateways",
+                "user": "root",
+                "password": "toor",
+                "host": "127.0.0.1",
                 "port": 3306
             }
         }
