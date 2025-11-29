@@ -8,15 +8,17 @@ from prettytable import PrettyTable
 
 class UserInterface(ApplicationBase):
     """UserInterface Class Definition."""
-    def __init__(self, config:dict)->None:
+
+    def __init__(self, config: dict) -> None:
         """Initializes object. """
         self._config_dict = config
         self.META = config["meta"]
-        super().__init__(subclass_name=self.__class__.__name__, 
-				   logfile_prefix_name=self.META["log_prefix"])
+        super().__init__(subclass_name=self.__class__.__name__,
+                         logfile_prefix_name=self.META["log_prefix"])
         self.DB = AppServices(config)
-        self._logger.log_debug(f'{inspect.currentframe().f_code.co_name}:It works!')
-        
+        self._logger.log_debug(
+            f'{inspect.currentframe().f_code.co_name}:It works!')
+
     # Template Start -- Create a user interface here. This just estabolishes the basic connection to db.
     def start(self):
         """Start main user interface."""
@@ -78,7 +80,7 @@ class UserInterface(ApplicationBase):
                     f"User selected an invalid option: {userin}"
                 )
                 print("Invalid option. Please select one of the listed options.")
-            
+
         self._hold_input()
 
     # ====== View operations ======
@@ -172,7 +174,7 @@ class UserInterface(ApplicationBase):
         table.field_names = ["Sensor Name"]
         for row in results:
             table.add_row(row)
-        print(table) 
+        print(table)
         sensor_name = input("Enter the name of the sensor to link: ")
         results = self.DB.get_all_gateways()
         table = PrettyTable()
@@ -203,7 +205,7 @@ class UserInterface(ApplicationBase):
         table.field_names = ["Sensor Name"]
         for row in results:
             table.add_row(row)
-        print(table) 
+        print(table)
         sensor_name = input("Enter the name of the sensor to delete: ")
         temporary_result = self.DB.check_sensor_exists(sensor_name)
         if not temporary_result:
@@ -234,7 +236,7 @@ class UserInterface(ApplicationBase):
         table.field_names = ["Gateway Name"]
         for row in results:
             table.add_row(row)
-        print(table) 
+        print(table)
         gateway_name = input("Enter the name of the gateway to delete: ")
         temporary_result = self.DB.check_gateway_exists(gateway_name)
         if not temporary_result:
@@ -267,7 +269,7 @@ class UserInterface(ApplicationBase):
         table.field_names = ["Sensor Name"]
         for row in results:
             table.add_row(row)
-        print(table) 
+        print(table)
         old_name = input("Enter the current sensor name: ")
         if not self.DB.check_sensor_exists(old_name):
             print(f"Sensor '{old_name}' does not exist.")
@@ -292,7 +294,7 @@ class UserInterface(ApplicationBase):
         table.field_names = ["Gateway Name"]
         for row in results:
             table.add_row(row)
-        print(table) 
+        print(table)
         old_name = input("Enter the current gateway name: ")
         if not self.DB.check_gateway_exists(old_name):
             print(f"Gateway '{old_name}' does not exist.")
@@ -301,7 +303,8 @@ class UserInterface(ApplicationBase):
         new_name = input("Enter the new gateway name: ")
         result = self.DB.update_gateway_name(old_name, new_name)
         if result:
-            print(f"Gateway '{old_name}' renamed to '{new_name}' successfully.")
+            print(
+                f"Gateway '{old_name}' renamed to '{new_name}' successfully.")
         else:
             print(
                 f"Failed to rename gateway '{old_name}' to '{new_name}'."
